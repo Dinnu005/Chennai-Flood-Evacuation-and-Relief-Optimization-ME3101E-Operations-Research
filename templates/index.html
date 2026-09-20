@@ -363,7 +363,7 @@
 
                 // If not loaded from backend, load the local JSON file shipped with the project
                 if (!networkData) {
-                    const localResp = await fetch('./chennai_network.json');
+                    const localResp = await fetch('./data/chennai_network.json');
                     if (!localResp.ok) throw new Error('Local network file not found');
                     networkData = await localResp.json();
                 }
@@ -1104,4 +1104,3 @@
 </body>
 
 </html>
-

@@ -11,11 +11,11 @@ import os
 from typing import Dict, List, Tuple
 
 import networkx as nx
-from flask import Flask, jsonify, request, send_from_directory
+from flask import Flask, jsonify, request, send_from_directory, render_template
 from flask_cors import CORS
 
 # ------------- Config -------------
-NETWORK_JSON_PATH = os.path.join(os.path.dirname(__file__), "chennai_network.json")
+NETWORK_JSON_PATH = os.path.join(os.path.dirname(__file__), "data", "chennai_network.json")
 DEFAULT_SPEED_KMPH = 30.0
 VEHICLE_DISPATCH_PREP_MINS = 10
 # ----------------------------------
@@ -485,12 +485,11 @@ def request_transport():
 
 
 # ===================== Main =====================
-from flask import send_from_directory
 
 @app.route('/')
 def serve_index():
     # Serve the main page (index.html)
-    return send_from_directory('.', 'index.html')
+    return render_template('index.html')
 
 @app.route('/<path:path>')
 def serve_static_files(path):
@@ -510,7 +509,6 @@ except Exception as e:
 if __name__ == "__main__":
     # local debug mode
     app.run(host="0.0.0.0", port=5000, debug=True)
-
 
 
 
